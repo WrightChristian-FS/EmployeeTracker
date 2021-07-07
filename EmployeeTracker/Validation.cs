@@ -22,7 +22,24 @@ namespace EmployeeTracker
             return userInput; 
         }
 
+        public static int MenuValidation(string userInput, int menuCount)
+        {
+            int convertedInput;
 
+            while(!(int.TryParse(userInput, out convertedInput)) || convertedInput > menuCount)
+            {
+                //State the problem
+                Console.WriteLine("\r\nSorry, that is not a valid menu selection");
+
+                //Repeat the question
+                Console.Write("Please enter a valid menu selection: ");
+
+                //Capture the answer
+                userInput = Console.ReadLine(); 
+            }
+
+            return convertedInput; 
+        }
 
         public static decimal DecimalValidation(string userInput)
         {

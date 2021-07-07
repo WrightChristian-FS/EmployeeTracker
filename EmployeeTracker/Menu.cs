@@ -14,23 +14,19 @@ namespace EmployeeTracker
             _menuItems = menuItems;
         }
 
-        public static int Display()
+        public static void Display()
         {
-            //Print the Header
-            //PRINT HEADER
-            Console.Write($"********** {_title} **********\r\n");
 
+            //Header
+            Console.WriteLine("====================");
+            Console.WriteLine($"{_title}");
+            Console.WriteLine("====================");
 
-            //Print the menu options
+            //Print the menu options 
             foreach (string item in _menuItems)
             {
-                Console.WriteLine($"[{_menuItems.IndexOf(item) + 1 }] {item,-110}");
+                Console.WriteLine($"{_menuItems.IndexOf(item) + 1}: {item}");
             }
-
-            int menuItemcount = _menuItems.Count;
-
-            return menuItemcount;
-
         }
     }
 }
