@@ -1,7 +1,7 @@
 ﻿using System;
 namespace EmployeeTracker
 {
-    public class FullTime
+    public class FullTime : Hourly 
     {
         public FullTime()
         {
