@@ -1,0 +1,3 @@
+Kerk Sears,Dallas TX,45,$46563.34
+Ardis Doogan,Fairfield CT,55,$55484.97
+Homer Beston,Boston MA,60,$52529.77
