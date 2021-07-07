@@ -6,7 +6,7 @@ namespace EmployeeTracker
         //Fields
         private decimal _salary;
 
-        public Salaried()
+        public Salaried(string name, string address, decimal salary): base (name, address)
         {
         }
     }

@@ -6,7 +6,7 @@ namespace EmployeeTracker
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Application app = new Application(); 
         }
     }
 }

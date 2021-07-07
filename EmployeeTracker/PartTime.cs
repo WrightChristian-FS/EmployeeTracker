@@ -1,9 +1,9 @@
 ﻿using System;
 namespace EmployeeTracker
 {
-    public class PartTime
+    public class PartTime : Hourly
     {
-        public PartTime()
+        public PartTime(string name, string address, decimal payPerHour, decimal hoursPerWeek) : base(name, address, payPerHour, hoursPerWeek)
         {
         }
     }

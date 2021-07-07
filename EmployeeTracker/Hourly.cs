@@ -5,10 +5,14 @@ namespace EmployeeTracker
     {
         //Protected fields
         protected decimal _payPerHour;
-        protected decimal hoursPerWeek; 
+        protected decimal _hoursPerWeek; 
 
-        public Hourly()
+        public Hourly(string name, string address, decimal payPerHour, decimal hoursPerWeek): base (name, address)
         {
+            _payPerHour = payPerHour;
+            _hoursPerWeek = hoursPerWeek;
+
+
         }
     }
 }
