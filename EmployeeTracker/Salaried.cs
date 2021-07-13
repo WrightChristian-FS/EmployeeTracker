@@ -33,6 +33,10 @@ namespace EmployeeTracker
             decimal weekHours = Validation.DecimalValidation(Console.ReadLine());
 
 
+            //Confirm creation 
+            Console.WriteLine("\r\nEmployee Created!");
+
+
             Salaried employee = new Salaried(employeeName, employeelocation, salary);
 
             return employee;

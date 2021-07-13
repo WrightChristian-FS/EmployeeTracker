@@ -38,9 +38,26 @@ namespace EmployeeTracker
             decimal weekHours = Validation.DecimalValidation(Console.ReadLine());
 
 
+            //Confirm creation 
+            Console.WriteLine("\r\nEmployee Created!");
+
+
             Hourly employee = new Hourly(employeeName, employeelocation, hourlyRate, weekHours);
 
             return employee;
+        }
+
+        public override decimal CalculatePay(Employee employee)
+        {
+            //Create a variable to hold the salary 
+            decimal salary = 0;
+
+
+            salary = ((_payPerHour * _hoursPerWeek) * 52); 
+
+
+            //Return the salary to the user 
+            return salary;
         }
     }
 }

@@ -8,7 +8,10 @@ namespace EmployeeTracker
 
         //Fields
         private static List<string> _menu;
-        
+        private static string _folder = "/../../../Output/";
+        private static string _file = "employees.txt";
+
+
 
         public Application()
         {
@@ -52,13 +55,9 @@ namespace EmployeeTracker
                         continueApplication = false; 
                         break;
                 }
-
-
             }
-
-
-
         }
+
 
         public static void MainMenu()
         {
@@ -73,6 +72,7 @@ namespace EmployeeTracker
             _menu = menu; 
         }
 
+
         public static void AddEmployeeMenu()
         {
             List<string> menu = new List<string>();
@@ -85,6 +85,7 @@ namespace EmployeeTracker
 
             _menu = menu; 
         }
+
 
         public static void AddEmployee()
         {
@@ -102,31 +103,31 @@ namespace EmployeeTracker
             switch (userMenuSelection)
             {
                 case 1:
-                    Hourly fullTineEmployee = Hourly.AddEmployee(); 
+                    Hourly fullTineEmployee = Hourly.AddEmployee();
+                    Continue();
                     break;
 
                 case 2:
                     Hourly partTimeEmployee = Hourly.AddEmployee();
+                    Continue();
                     break;
 
                 case 3:
                     Salaried salaryEmployee = Salaried.AddEmployee();
+                    Continue();
                     break;
 
                 case 4:
-                    Manager manager = Manager.AddEmployee(); 
+                    Manager manager = Manager.AddEmployee();
+                    Continue();
                     break;
 
                 case 5:
-                    Console.WriteLine("\r\nBack main menu");
+                    //Return to the menu
+                    Console.Clear(); 
                     break;
             }
 
-
-
-
-
-            Continue(); 
         }
 
 

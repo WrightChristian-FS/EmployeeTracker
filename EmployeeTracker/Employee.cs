@@ -7,8 +7,8 @@ namespace EmployeeTracker
         protected string _address;
 
         //Properties
-        public string Name { get; set; }
-        public string Address { get; set; }
+        protected string Name { get; set; }
+        protected string Address { get; set; }
 
         public Employee(string name, string address)
         {
@@ -16,9 +16,14 @@ namespace EmployeeTracker
             Address = address; 
         }
 
-        public virtual void CalculatePay()
+        public virtual decimal CalculatePay(Employee employee)
         {
+            //Create a variable to hold the salary 
+            decimal salary = 0;
 
+
+            //Return the salary to the user 
+            return salary; 
         }
 
         public virtual Employee CreateEmployee()
@@ -51,7 +56,7 @@ namespace EmployeeTracker
 
         }
 
-
+     
 
     }
 }

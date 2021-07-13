@@ -10,36 +10,18 @@ namespace EmployeeTracker
             hoursPerWeek = hours; 
         }
 
-
-       //public static FullTime AddEmployee()
-       // {
-
-       //     Console.Clear();
-
-       //     //Header
-       //     Console.WriteLine("====================");
-       //     Console.WriteLine($"Add Employee");
-       //     Console.WriteLine("====================\r\n");
+        public override decimal CalculatePay(Employee employee)
+        {
+            //Create a variable to hold the salary 
+            decimal salary = 0;
 
 
-       //     Console.Write("Employee Name: ");
-       //     string employeeName = Validation.StringValidation(Console.ReadLine());
-
-       //     Console.Write("Employee Location(City, State): ");
-       //     string employeelocation = Validation.StringValidation(Console.ReadLine());
-
-       //     Console.Write("Employee Hourly Rate: ");
-       //     decimal hourlyRate = Validation.DecimalValidation(Console.ReadLine());
-
-       //     Console.Write("Hours Per Week: ");
-       //     decimal weekHours = Validation.DecimalValidation(Console.ReadLine());
+            salary = ((_payPerHour * _hoursPerWeek) * 52);
 
 
-       //     FullTime employee = new FullTime(employeeName, employeelocation, hourlyRate, weekHours);
-
-       //     return employee;
-
-       // }
+            //Return the salary to the user 
+            return salary;
+        }
 
     }
 }

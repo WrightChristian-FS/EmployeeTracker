@@ -32,10 +32,27 @@ namespace EmployeeTracker
             Console.Write("Bonus Amount: ");
             decimal bonus = Validation.DecimalValidation(Console.ReadLine());
 
+            //Confirm creation 
+            Console.WriteLine("\r\nEmployee Created!");
 
             Manager employee = new Manager(employeeName, employeelocation, salary, bonus);
 
             return employee;
+        }
+
+
+
+        public override decimal CalculatePay(Employee employee)
+        {
+            //Create a variable to hold the salary 
+            decimal salary = 0;
+
+
+            salary = salary + _bonus;
+
+
+            //Return the salary to the user 
+            return salary;
         }
     }
 }
