@@ -10,6 +10,47 @@ namespace EmployeeTracker
             hoursPerWeek = hours; 
         }
 
+        public static Hourly AddEmployee()
+        {
+
+            Console.Clear();
+
+            //Header
+            UI.HeaderUI(); 
+            Console.WriteLine("====================");
+            Console.WriteLine($"   Add Employee");
+            Console.WriteLine("====================\r\n");
+
+            UI.StandardUI(); 
+            Console.Write("Employee Name: ");
+            UI.InputUI();
+            string employeeName = Validation.StringValidation(Console.ReadLine());
+
+            UI.StandardUI();
+            Console.Write("\r\nEmployee Location(City, State): ");
+            UI.InputUI();
+            string employeelocation = Validation.StringValidation(Console.ReadLine());
+
+            UI.StandardUI();
+            Console.Write("\r\nEmployee Hourly Rate: ");
+            UI.InputUI();
+            decimal hourlyRate = Validation.DecimalValidation(Console.ReadLine());
+            UI.StandardUI();
+
+
+            //Set the hours per week 
+            decimal weekHours = 40;
+
+
+            //Confirm creation 
+            Console.WriteLine("\r\nEmployee Created!");
+
+
+            Hourly employee = new Hourly(employeeName, employeelocation, hourlyRate, weekHours);
+
+            return employee;
+        }
+
         public override decimal CalculatePay(Employee employee)
         {
             //Create a variable to hold the salary 

@@ -18,9 +18,11 @@ namespace EmployeeTracker
         {
 
             //Header
+            UI.HeaderUI(); 
             Console.WriteLine("====================");
-            Console.WriteLine($"{_title}");
-            Console.WriteLine("====================");
+            Console.WriteLine($"   {_title}");
+            Console.WriteLine("====================\r\n");
+            UI.StandardUI();    
 
             //Print the menu options 
             foreach (string item in _menuItems)

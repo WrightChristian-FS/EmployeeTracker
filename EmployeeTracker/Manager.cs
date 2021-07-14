@@ -15,22 +15,34 @@ namespace EmployeeTracker
             Console.Clear();
 
             //Header
+            UI.HeaderUI();
             Console.WriteLine("====================");
-            Console.WriteLine($"Add Employee");
+            Console.WriteLine($"   Add Employee");
             Console.WriteLine("====================\r\n");
+            UI.StandardUI();
+
 
 
             Console.Write("Employee Name: ");
+            UI.InputUI(); 
             string employeeName = Validation.StringValidation(Console.ReadLine());
+            UI.StandardUI();
+
 
             Console.Write("Employee Location(City, State): ");
+            UI.InputUI(); 
             string employeelocation = Validation.StringValidation(Console.ReadLine());
+            UI.StandardUI();
 
-            Console.Write("Employee Salary: ");
+            Console.Write("Employee Annual Salary: ");
+            UI.InputUI(); 
             decimal salary = Validation.DecimalValidation(Console.ReadLine());
+            UI.StandardUI();
 
             Console.Write("Bonus Amount: ");
+            UI.InputUI(); 
             decimal bonus = Validation.DecimalValidation(Console.ReadLine());
+            UI.StandardUI();
 
             //Confirm creation 
             Console.WriteLine("\r\nEmployee Created!");

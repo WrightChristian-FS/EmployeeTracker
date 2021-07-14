@@ -20,22 +20,34 @@ namespace EmployeeTracker
             Console.Clear();
 
             //Header
+            UI.HeaderUI(); 
             Console.WriteLine("====================");
-            Console.WriteLine($"Add Employee");
+            Console.WriteLine($"   Add Employee");
             Console.WriteLine("====================\r\n");
+            UI.StandardUI(); 
 
 
             Console.Write("Employee Name: ");
+            UI.InputUI();
             string employeeName = Validation.StringValidation(Console.ReadLine());
+            UI.StandardUI();
 
             Console.Write("Employee Location(City, State): ");
+            UI.InputUI(); 
             string employeelocation = Validation.StringValidation(Console.ReadLine());
+            UI.StandardUI();
+
 
             Console.Write("Employee Hourly Rate: ");
+            UI.InputUI(); 
             decimal hourlyRate = Validation.DecimalValidation(Console.ReadLine());
+            UI.StandardUI();
+
 
             Console.Write("Hours Per Week: ");
+            UI.InputUI(); 
             decimal weekHours = Validation.DecimalValidation(Console.ReadLine());
+            UI.StandardUI(); 
 
 
             //Confirm creation 

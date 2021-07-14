@@ -26,15 +26,16 @@ namespace EmployeeTracker
             return salary; 
         }
 
-        public virtual Employee CreateEmployee()
+        public virtual Employee AddEmployee ()
         {
             Console.Clear();
 
             //Header
+            UI.HeaderUI(); 
             Console.WriteLine("====================");
-            Console.WriteLine($"Add Employee");
+            Console.WriteLine($"   Add Employee");
             Console.WriteLine("====================\r\n");
-
+            UI.StandardUI(); 
 
             Console.Write("Employee Name: ");
             string employeeName = Validation.StringValidation(Console.ReadLine());

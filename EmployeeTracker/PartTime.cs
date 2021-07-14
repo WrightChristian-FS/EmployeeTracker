@@ -7,6 +7,7 @@ namespace EmployeeTracker
         {
         }
 
+
         public override decimal CalculatePay(Employee employee)
         {
             //Create a variable to hold the salary 

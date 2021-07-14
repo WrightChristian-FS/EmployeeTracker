@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace EmployeeTracker
 {
@@ -8,7 +9,7 @@ namespace EmployeeTracker
 
         //Fields
         private static List<string> _menu;
-        private static string _folder = "/../../../Output/";
+        private static string _folder = "../../../Output/";
         private static string _file = "employees.txt";
 
 
@@ -19,6 +20,9 @@ namespace EmployeeTracker
             //Inportant Variables
             bool continueApplication = true;
             List<Employee> employeeList = new List<Employee>();
+
+      
+
 
             //Create the main menu
 
@@ -103,7 +107,7 @@ namespace EmployeeTracker
             switch (userMenuSelection)
             {
                 case 1:
-                    Hourly fullTineEmployee = Hourly.AddEmployee();
+                    Hourly fullTineEmployee = FullTime.AddEmployee();
                     Continue();
                     break;
 
@@ -133,9 +137,13 @@ namespace EmployeeTracker
 
         public static void RemoveEmployee()
         {
+            UI.HeaderUI(); 
             Console.WriteLine("====================");
             Console.WriteLine($"REMOVE EMPLOYEE");
             Console.WriteLine("====================\r\n");
+            UI.StandardUI();
+
+
 
             Continue();
 
@@ -143,10 +151,36 @@ namespace EmployeeTracker
 
         public static void DisplayPayroll()
         {
-            Console.WriteLine("====================");
-            Console.WriteLine($"DISPLAY PAYROLL");
-            Console.WriteLine("====================\r\n");
 
+            //Clear the console,
+            Console.Clear();
+
+            //Print the header
+            UI.HeaderUI(); 
+            Console.WriteLine("====================");
+            Console.WriteLine($"  DISPLAY PAYROLL");
+            Console.WriteLine("====================\r\n");
+            UI.StandardUI();
+
+            //Print the list headerts
+            UI.InputUI(); 
+            Console.WriteLine(String.Format("{0, -20} {1, -20} {2, -20} {3, -20}", "Employee Name", "Address", "Age", "Salary"));
+            UI.StandardUI(); 
+
+            using (StreamReader sr = new StreamReader(_folder + _file))
+            {
+                string line;
+
+                while ((line = sr.ReadLine()) != null)
+                {
+
+
+                    string[] data = line.Split(';');
+
+                    Console.WriteLine($"{data[0],-20} {data[1],-20} {data[2],-20} ${data[3],-20}");
+                }
+
+            }
             Continue();
 
         }
