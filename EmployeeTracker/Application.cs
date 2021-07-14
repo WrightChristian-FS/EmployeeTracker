@@ -9,8 +9,10 @@ namespace EmployeeTracker
 
         //Fields
         private static List<string> _menu;
-        private static string _folder = "../../../Output/";
-        private static string _file = "employees.txt";
+        //private static string _folder = "../../../Output/";
+        //private static string _file = "employees.txt";
+        private static string _directory = "../../../Output/employees.txt";
+
 
 
 
@@ -21,9 +23,7 @@ namespace EmployeeTracker
             bool continueApplication = true;
             List<Employee> employeeList = new List<Employee>();
 
-      
-
-
+          
             //Create the main menu
 
 
@@ -107,22 +107,22 @@ namespace EmployeeTracker
             switch (userMenuSelection)
             {
                 case 1:
-                    Hourly fullTineEmployee = FullTime.AddEmployee();
+                    FullTime.AddEmployee();                    
                     Continue();
                     break;
 
                 case 2:
-                    Hourly partTimeEmployee = Hourly.AddEmployee();
+                    PartTime.AddEmployee();
                     Continue();
                     break;
 
                 case 3:
-                    Salaried salaryEmployee = Salaried.AddEmployee();
+                    Salaried.AddEmployee();
                     Continue();
                     break;
 
                 case 4:
-                    Manager manager = Manager.AddEmployee();
+                    Manager.AddEmployee();
                     Continue();
                     break;
 
@@ -164,10 +164,10 @@ namespace EmployeeTracker
 
             //Print the list headerts
             UI.InputUI(); 
-            Console.WriteLine(String.Format("{0, -20} {1, -20} {2, -20} {3, -20}", "Employee Name", "Address", "Age", "Salary"));
+            Console.WriteLine(String.Format("{0, -20} {1, -20} {2, -20} {3, -20}", "Employee Name", "Address", "Hours Per Week", "Salary"));
             UI.StandardUI(); 
 
-            using (StreamReader sr = new StreamReader(_folder + _file))
+            using (StreamReader sr = new StreamReader(_directory))
             {
                 string line;
 
@@ -200,5 +200,8 @@ namespace EmployeeTracker
             Console.Clear(); 
         }
 
+
+
     }
 }
+

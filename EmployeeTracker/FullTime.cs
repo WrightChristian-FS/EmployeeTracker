@@ -1,16 +1,22 @@
 ﻿using System;
+using System.IO; 
+
 namespace EmployeeTracker
 {
     public class FullTime : Hourly 
     {
+        private static string _directory = "../../../Output/employees.txt";
+        public string Name { get; set;  }
+
         public FullTime(string name, string address, decimal payPerHour, decimal hoursPerWeek) : base(name, address, payPerHour,hoursPerWeek)
         {
+            Name = name; 
             decimal hours = 40;
 
             hoursPerWeek = hours; 
         }
 
-        public static Hourly AddEmployee()
+        public static void AddEmployee()
         {
 
             Console.Clear();
@@ -37,27 +43,33 @@ namespace EmployeeTracker
             decimal hourlyRate = Validation.DecimalValidation(Console.ReadLine());
             UI.StandardUI();
 
-
             //Set the hours per week 
             decimal weekHours = 40;
 
+            //Calculate the employee salary 
+            decimal employeeSalary = CalculatePay(hourlyRate, weekHours);
 
-            //Confirm creation 
+            //Add the  user information to a string
+            string userData = $"{employeeName};{employeelocation};{weekHours};{employeeSalary} ";
+
+            //Add the user to the employee list file
+            using (StreamWriter sw = File.AppendText(_directory))
+            {
+                sw.WriteLine(userData); 
+            }
+            
+            //Print confirmation that the user was created          
             Console.WriteLine("\r\nEmployee Created!");
 
-
-            Hourly employee = new Hourly(employeeName, employeelocation, hourlyRate, weekHours);
-
-            return employee;
         }
 
-        public override decimal CalculatePay(Employee employee)
+        public static decimal CalculatePay(decimal rate, decimal hours)
         {
             //Create a variable to hold the salary 
             decimal salary = 0;
 
 
-            salary = ((_payPerHour * _hoursPerWeek) * 52);
+            salary = ((rate * hours) * 52);
 
 
             //Return the salary to the user 

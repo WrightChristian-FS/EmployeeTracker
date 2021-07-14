@@ -1,16 +1,20 @@
 ﻿using System;
+using System.IO;
+
 namespace EmployeeTracker
 {
     public class Salaried : Employee
     {
         //Fields
         private decimal _salary;
+        private static string _directory = "../../../Output/employees.txt";
+
 
         public Salaried(string name, string address, decimal salary): base (name, address)
         {
         }
 
-        public static Salaried AddEmployee()
+        public static void AddEmployee()
         {
             Console.Clear();
 
@@ -37,13 +41,23 @@ namespace EmployeeTracker
             decimal salary = Validation.DecimalValidation(Console.ReadLine());
             UI.StandardUI();
 
+
+            //Add the  user information to a string
+            string userData = $"{employeeName};{employeelocation};40;{salary} ";
+
+            //Add the user to the employee list file
+            using (StreamWriter sw = File.AppendText(_directory))
+            {
+                sw.WriteLine(userData);
+            }
+
             //Confirm creation 
             Console.WriteLine("\r\nEmployee Created!");
 
 
-            Salaried employee = new Salaried(employeeName, employeelocation, salary);
+            
 
-            return employee;
+            
         }
     }
 }

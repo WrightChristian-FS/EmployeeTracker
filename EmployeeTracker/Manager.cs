@@ -1,16 +1,22 @@
 ﻿using System;
+using System.IO;
+
 namespace EmployeeTracker
 {
     public class Manager : Salaried 
     {
         //Fields
-        private decimal _bonus; 
+        private decimal _bonus;
+
+        private static string _directory = "../../../Output/employees.txt";
+        
+        
 
         public Manager(string name, string address, decimal salary, decimal bonus) : base (name, address, salary)
         {
         }
 
-        public static Manager AddEmployee()
+        public static void AddEmployee()
         {
             Console.Clear();
 
@@ -44,27 +50,27 @@ namespace EmployeeTracker
             decimal bonus = Validation.DecimalValidation(Console.ReadLine());
             UI.StandardUI();
 
+            //Calculate the employee salary 
+            decimal employeeSalary = salary + bonus;
+
+            //Add the  user information to a string
+            string userData = $"{employeeName};{employeelocation};40;{employeeSalary} ";
+
+            //Add the user to the employee list file
+            using (StreamWriter sw = File.AppendText(_directory))
+            {
+                sw.WriteLine(userData);
+            }
+
+
             //Confirm creation 
             Console.WriteLine("\r\nEmployee Created!");
 
-            Manager employee = new Manager(employeeName, employeelocation, salary, bonus);
+            
 
-            return employee;
+            
         }
 
 
-
-        public override decimal CalculatePay(Employee employee)
-        {
-            //Create a variable to hold the salary 
-            decimal salary = 0;
-
-
-            salary = salary + _bonus;
-
-
-            //Return the salary to the user 
-            return salary;
-        }
     }
 }
