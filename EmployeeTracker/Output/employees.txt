@@ -1,7 +1,6 @@
 Kerk Sears;Dallas, TX;40;46563.34
 Ardis Doogan;Fairfield, CT;40;55484.97
 Homer Beston;Boston, MA;40;52529.77
-Full Time;Pasadena, CA;40;62400 
-Part Time;Los Angeles, CA ;40;41600 
-Salaried Employee;Anaheim, CA;40;100000 
-Manager ;Newport Beach, CA;40;150000 
+Alex ;29;40;191360 
+Ben ;93;40;193440 
+Cat ;39;40;193440 
