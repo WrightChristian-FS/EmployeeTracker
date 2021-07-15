@@ -68,7 +68,7 @@ namespace EmployeeTracker
             int convertedInput;
 
 
-            while(!(int.TryParse(userInput, out convertedInput)) || (convertedInput > userCount))
+            while(!(int.TryParse(userInput, out convertedInput)) || (convertedInput > userCount + 1))
             {
                 //State the problem
                 Console.WriteLine("Sorry, that is not a valid number");

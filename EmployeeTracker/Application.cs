@@ -175,7 +175,7 @@ namespace EmployeeTracker
                     employeeList.Add(employeeLine);
                     employeeID += 1;
                 }
-                Console.WriteLine($"{employeeList.Count,-5} RETURN TO MENU");
+                Console.WriteLine($"{employeeList.Count + 1,-5} RETURN TO MENU");
 
 
             }
@@ -188,53 +188,63 @@ namespace EmployeeTracker
             UI.StandardUI();
 
 
-            //Confirm the removal of the employee
-            string targetEmployee = employeeList[employeeToRemove];
-            string[] detailedEmployee = targetEmployee.Split(';');
-            Console.Clear(); 
-
-            //Print the header
-            UI.HeaderUI();
-            Console.WriteLine("====================");
-            Console.WriteLine($"  REMOVE EMPLOYEE");
-            Console.WriteLine("====================\r\n");
-            UI.StandardUI();
-
-
-            Console.Write($"\r\nCONFIRM: Remove {detailedEmployee[0]} [yes/no]: ");
-            UI.InputUI();
-
-            bool removalConfirmation = Validation.YesNoValidation(Console.ReadLine(), employeeList.Count);
-            UI.StandardUI(); 
-
-
-            if (removalConfirmation == true)
+            if(employeeToRemove == employeeList.Count + 1)
             {
-                Console.WriteLine($"\r\n{detailedEmployee[0]} has been removed!");
-                employeeList.RemoveAt(employeeToRemove);
-            } else if (removalConfirmation == false)
+                Continue(); 
+            } else
             {
-                Console.WriteLine($"\r\n{detailedEmployee[0]} has NOT been removed!");
+                //Confirm the removal of the employee
+                string targetEmployee = employeeList[employeeToRemove];
+                string[] detailedEmployee = targetEmployee.Split(';');
+                Console.Clear();
 
-            }
-           
+                //Print the header
+                UI.HeaderUI();
+                Console.WriteLine("====================");
+                Console.WriteLine($"  REMOVE EMPLOYEE");
+                Console.WriteLine("====================\r\n");
+                UI.StandardUI();
 
 
-            using (StreamWriter sw = new StreamWriter(_directory))
-            {
+                Console.Write($"\r\nCONFIRM: Remove {detailedEmployee[0]} [yes/no]: ");
+                UI.InputUI();
+
+                bool removalConfirmation = Validation.YesNoValidation(Console.ReadLine(), employeeList.Count);
+                UI.StandardUI();
 
 
-                foreach (string employee in employeeList)
+                if (removalConfirmation == true)
                 {
-                    sw.WriteLine(employee);
+                    Console.WriteLine($"\r\n{detailedEmployee[0]} has been removed!");
+                    employeeList.RemoveAt(employeeToRemove);
+                }
+                else if (removalConfirmation == false)
+                {
+                    Console.WriteLine($"\r\n{detailedEmployee[0]} has NOT been removed!");
+
                 }
 
 
+
+                using (StreamWriter sw = new StreamWriter(_directory))
+                {
+
+
+                    foreach (string employee in employeeList)
+                    {
+                        sw.WriteLine(employee);
+                    }
+
+
+                }
+
+
+
+                Continue();
+
             }
 
-
-
-            Continue(); 
+           
         }
 
         public static void DisplayPayroll()
