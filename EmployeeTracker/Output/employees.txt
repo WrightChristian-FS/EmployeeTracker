@@ -1,6 +1,7 @@
 Kerk Sears;Dallas, TX;40;46563.34
 Ardis Doogan;Fairfield, CT;40;55484.97
 Homer Beston;Boston, MA;40;52529.77
-Alex ;29;40;191360 
-Ben ;93;40;193440 
+Alex ;Los Angeles, CA ;40;83200 
+Ben ;Anaheim, VA ;40;81120 
 Cat ;39;40;193440 
+Full Time;39;40;81120 

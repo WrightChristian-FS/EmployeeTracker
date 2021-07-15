@@ -10,10 +10,8 @@ namespace EmployeeTracker
         //Fields
         private static List<string> _menu;
         private static string _directory = "../../../Output/employees.txt";
-        private static List<string> employeeList; 
-
-
-
+        
+        
 
         public Application()
         {
@@ -73,7 +71,7 @@ namespace EmployeeTracker
             menu.Add("Exit");
 
             _menu = menu; 
-        }
+        }  
 
 
         public static void AddEmployeeMenu()
@@ -136,66 +134,99 @@ namespace EmployeeTracker
 
         public static void RemoveEmployee()
         {
-            //Clear the console
-            Console.Clear(); 
 
-            UI.HeaderUI(); 
+            //Clear the console
+            Console.Clear();
+
+            //Print the header
+            UI.HeaderUI();
             Console.WriteLine("====================");
-            Console.WriteLine($"REMOVE EMPLOYEE");
+            Console.WriteLine($"  REMOVE EMPLOYEE");
             Console.WriteLine("====================\r\n");
             UI.StandardUI();
 
 
+            //Create a list to hold the employees
+            List<string> employeeList = new List<string>();
+            int employeeID = 1;
+
             //Print the list headerts
             UI.InputUI();
-            Console.WriteLine(String.Format("{0, -20} {1, -20} {2, -20} {3, -20}", "Employee Name", "Address", "Hours Per Week", "Salary"));
+            Console.WriteLine(String.Format("{0, -5} {1, -20} {2, -20} {3, -20} {4, -20}", "ID", "Employee Name", "Address", "Hours Per Week", "Salary"));
             UI.StandardUI();
 
-            int lineCount = 0;
 
-            //Print the user List 
+            //Print the employee list
             using (StreamReader sr = new StreamReader(_directory))
             {
-                
+                //Variable to hold the current readline
+                string employeeLine;
 
-                string line;
-
-                while ((line = sr.ReadLine()) != null)
+                //Read each line
+                while ((employeeLine = sr.ReadLine()) != null)
                 {
-                  
-                    //Split the data 
-                    string[] data = line.Split(';');                
+                    //Split the line into categories 
+                    string[] splitLine = employeeLine.Split(';');
 
-                    //Print the employee 
-                    Console.WriteLine($"{data[0],-20} {data[1],-20} {data[2],-20} ${data[3],-20}");
+                    //Print the user information 
+                    Console.WriteLine($"{employeeID,-5 } {splitLine[0],-20} {splitLine[1],-20} {splitLine[2],-20} ${splitLine[3],-20}");
 
-
-                    //Add employees to list
-                    employeeList.Add(line); 
+                    //Add the user to the user list
+                    employeeList.Add(employeeLine);
+                    employeeID += 1;
                 }
+                Console.WriteLine($"{employeeList.Count,-5} RETURN TO MENU");
+
 
             }
 
 
+            //Ask the user which employee they want to remove
+            Console.Write("\r\nWhich employee do you want to remove(Use ID number): ");
+            UI.InputUI();
+            int employeeToRemove = Validation.IntegerValidation(Console.ReadLine(), employeeList.Count);
+            UI.StandardUI();
 
-            //Ask the user which user they want to remove
-            Console.Write("\r\nWhich employee do you want to remove: ");
+
+            //Confirm the removal of the employee
+            string targetEmployee = employeeList[employeeToRemove];
+            string[] detailedEmployee = targetEmployee.Split(';');
+            Console.Clear(); 
+
+            //Print the header
+            UI.HeaderUI();
+            Console.WriteLine("====================");
+            Console.WriteLine($"  REMOVE EMPLOYEE");
+            Console.WriteLine("====================\r\n");
+            UI.StandardUI();
+
+
+            Console.Write($"\r\nCONFIRM: Remove {detailedEmployee[0]} [yes/no]: ");
             UI.InputUI();
 
-            string employeeToRemove = Validation.StringValidation(Console.ReadLine());
+            bool removalConfirmation = Validation.YesNoValidation(Console.ReadLine(), employeeList.Count);
+            UI.StandardUI(); 
 
 
-
-            foreach(string line in employeeList)
+            if (removalConfirmation == true)
             {
-                string[] splitLine = line.Split(';');
+                Console.WriteLine($"\r\n{detailedEmployee[0]} has been removed!");
+                employeeList.RemoveAt(employeeToRemove);
+            } else if (removalConfirmation == false)
+            {
+                Console.WriteLine($"\r\n{detailedEmployee[0]} has NOT been removed!");
 
-                if (splitLine[0].Contains(employeeToRemove))
-                { 
+            }
+           
 
 
+            using (StreamWriter sw = new StreamWriter(_directory))
+            {
 
 
+                foreach (string employee in employeeList)
+                {
+                    sw.WriteLine(employee);
                 }
 
 
@@ -203,10 +234,7 @@ namespace EmployeeTracker
 
 
 
-
-
-            Continue();
-
+            Continue(); 
         }
 
         public static void DisplayPayroll()

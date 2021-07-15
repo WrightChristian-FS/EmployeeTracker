@@ -62,5 +62,62 @@ namespace EmployeeTracker
 
         }
 
+
+        public static int IntegerValidation(string userInput, int userCount)
+        {
+            int convertedInput;
+
+
+            while(!(int.TryParse(userInput, out convertedInput)) || (convertedInput > userCount))
+            {
+                //State the problem
+                Console.WriteLine("Sorry, that is not a valid number");
+
+                //Repeat the question
+                Console.Write("Please enter a valid number: ");
+
+                //Capture the answer
+                UI.InputUI();
+                userInput = Console.ReadLine();
+                UI.StandardUI(); 
+            }
+
+
+            return convertedInput; 
+        }
+
+
+        public static bool YesNoValidation(string userInput, int userCount)
+        {
+            bool returnValue;
+            
+
+
+            while((userInput.ToLower() != "yes") && (userInput.ToLower() != "no") )
+            {
+                //State the probem
+                Console.WriteLine("Sorry, that is not a valid Yes or No answer!");
+
+                //Repeat the question
+                Console.Write("Would you like to remove the employee (yes/No):");
+
+                //Capture the answer
+                UI.InputUI();
+                userInput = Console.ReadLine();
+                UI.StandardUI(); 
+            }
+
+            if(userInput.ToLower() == "yes")
+            {
+                returnValue = true; 
+            } else
+            {
+                returnValue = false; 
+            }
+
+
+            return returnValue; 
+        }
+
     }
 }
