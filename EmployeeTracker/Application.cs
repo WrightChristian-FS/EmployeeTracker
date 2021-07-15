@@ -190,11 +190,14 @@ namespace EmployeeTracker
 
             if(employeeToRemove == employeeList.Count + 1)
             {
-                Continue(); 
+                Console.WriteLine("\r\nReturning to main menu");
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadLine();
+                Console.Clear(); 
             } else
             {
                 //Confirm the removal of the employee
-                string targetEmployee = employeeList[employeeToRemove];
+                string targetEmployee = employeeList[employeeToRemove - 1];
                 string[] detailedEmployee = targetEmployee.Split(';');
                 Console.Clear();
 
@@ -216,7 +219,7 @@ namespace EmployeeTracker
                 if (removalConfirmation == true)
                 {
                     Console.WriteLine($"\r\n{detailedEmployee[0]} has been removed!");
-                    employeeList.RemoveAt(employeeToRemove);
+                    employeeList.RemoveAt(employeeToRemove - 1);
                 }
                 else if (removalConfirmation == false)
                 {
@@ -271,10 +274,8 @@ namespace EmployeeTracker
 
                 while ((line = sr.ReadLine()) != null)
                 {
-
-
+                    //Split the line into appropriate categories and print to the console
                     string[] data = line.Split(';');
-
                     Console.WriteLine($"{data[0],-20} {data[1],-20} {data[2],-20} ${data[3],-20}");
 
                 }
